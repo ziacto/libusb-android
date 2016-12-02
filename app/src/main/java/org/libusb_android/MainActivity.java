@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+
+
 public class MainActivity extends Activity {
 
     // Used to load the 'native-lib' library on application startup.
@@ -16,9 +18,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Example of a call to a native method
+
+        /**
+         * Test Enumeration USB Devices
+         */
+        EnumeratingUsbDevices usbDevices = new EnumeratingUsbDevices(this);
+
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
+        tv.setText(stringFromJNI() + "\n" + usbDevices.Work());
+
+
     }
 
     /**
