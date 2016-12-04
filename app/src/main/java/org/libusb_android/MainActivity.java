@@ -25,7 +25,9 @@ public class MainActivity extends Activity {
         EnumeratingUsbDevices usbDevices = new EnumeratingUsbDevices(this);
 
         TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI() + "\n" + usbDevices.Work());
+        tv.setText(stringFromJNI() + "\n" +
+                "Wenjiun Enumeration:\n" +
+                usbDevices.wenjiunEnumeration());
 
 
     }

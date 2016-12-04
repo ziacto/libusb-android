@@ -39,6 +39,8 @@ captures/
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/libraries
+# my dictionaries
+.idea/dictionaries/
 
 # Keystore files
 *.jks
@@ -56,5 +58,10 @@ captures/
 # /build
 # /captures
 # .externalNativeBuild
+
+# added by Android Studio
+
 app/libs/
 app/src/main/res/drawable/
+libusb/libs/
+libusb/src/main/res/drawable/
