@@ -1,1 +1,1 @@
-include ':app', ':libusb', ':helper'
+include ':app', ':libusb'

@@ -23,11 +23,13 @@
             android:scrollbars="vertical"
             android:fillViewport="true">
 
-            <TextView
+            <EditText
                 android:id="@+id/sample_text"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:text="Hello World!" />
+                android:text="Hello World!"
+                android:fontFamily="monospace"
+            />
 
         </ScrollView>
     </LinearLayout>

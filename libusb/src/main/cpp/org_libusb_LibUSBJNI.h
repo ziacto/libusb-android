@@ -9,10 +9,10 @@ extern "C" {
 #endif
 /*
  * Class:     org_libusb_LibUSBJNI
- * Method:    libusb_jni_demo
+ * Method:    usb_jni_demo
  * Signature: (I)Ljava/lang/String;
  */
-JNIEXPORT jstring JNICALL Java_org_libusb_LibUSBJNI_libusb_1jni_1demo
+JNIEXPORT jstring JNICALL Java_org_libusb_LibUSBJNI_usb_1jni_1demo
   (JNIEnv *, jobject, jint);
 
 #ifdef __cplusplus

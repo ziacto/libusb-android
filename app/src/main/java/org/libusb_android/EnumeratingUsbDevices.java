@@ -37,24 +37,26 @@ import org.helper.Str;
 
 import org.libusb.LibUSBClassCode;
 
-
+/**
+ * Enumerating USB Devices in Java
+ * Based on Yap Wen Jiun App (https://github.com/wenjiun/USB-Device-Data)
+ */
 public class EnumeratingUsbDevices {
 
     protected Context appContext;
     protected Locale locale;
 
-
     protected UsbManager usbManager;
-
-    private final String endl = "\n";
-//    private final String tab = "\t";
 
     public EnumeratingUsbDevices(Context appContext) {
         this.appContext = appContext;
         locale = Locale.getDefault();
     }
 
-
+    /**
+     *
+     * @return string with USB Devices information
+     */
     public String wenjiunEnumeration(){
 
         usbManager = (UsbManager) appContext.getSystemService(Context.USB_SERVICE);
@@ -111,12 +113,12 @@ public class EnumeratingUsbDevices {
                     sb.append("\t\t*****************\n");
                     sb.append(String.format(locale, "\t\tEndpoint No.: %1$d\n", usbEndpoint.getEndpointNumber() ));
                     int direction = usbEndpoint.getDirection();
-                    sb.append(String.format("\t\tDirection...: 0x%1$02x (%2$s)\n", direction,
+                    sb.append(String.format(locale, "\t\tDirection...: 0x%1$02x (%2$s)\n", direction,
                             ((direction == UsbConstants.USB_DIR_IN) ? "device to host" :
                             ((direction == UsbConstants.USB_DIR_OUT) ? "host to device" : "undefined")) ));
-                    sb.append(String.format("\t\tAddress.....: 0x%1$02x (%2$s)\n", usbEndpoint.getAddress(),
+                    sb.append(String.format(locale, "\t\tAddress.....: 0x%1$02x (%2$s)\n", usbEndpoint.getAddress(),
                             Str.lpad(Integer.toBinaryString(usbEndpoint.getAddress()), 8, "0") ));
-                    sb.append(String.format("\t\tAttributes..: 0x%1$02x (%2$s)\n", usbEndpoint.getAttributes(),
+                    sb.append(String.format(locale, "\t\tAttributes..: 0x%1$02x (%2$s)\n", usbEndpoint.getAttributes(),
                             Str.lpad(Integer.toBinaryString(usbEndpoint.getAttributes()), 8, "0") ));
 
                     sb.append(String.format(locale, "\t\tMax Packet..: %1$d\n", usbEndpoint.getMaxPacketSize() ));
@@ -144,17 +146,13 @@ public class EnumeratingUsbDevices {
                     sb.append(String.format(locale, "\t\tType........: %1$d (%2$s)\n", type, text ));
 
                 }
-                sb.append(endl);
+                sb.append("\n");
 
             }
 
-
-
-
         }
 
-        sb.append(endl);
+        sb.append("\n");
         return sb.toString();
-
     }
 }

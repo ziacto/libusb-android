@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-
+import org.libusb.LibUSBJNI;
 
 public class MainActivity extends Activity {
 
@@ -18,16 +18,27 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TextView textView = (TextView) findViewById(R.id.sample_text);
 
         /**
-         * Test Enumeration USB Devices
+         * Test Enumeration USB Devices in cpp
          */
-        EnumeratingUsbDevices usbDevices = new EnumeratingUsbDevices(this);
+        LibUSBJNI usbJNI = new LibUSBJNI();
+        textView.setText("cpp Enumeration:\n" +
+                usbJNI.Demo() );
 
-        TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI() + "\n" +
-                "Wenjiun Enumeration:\n" +
-                usbDevices.wenjiunEnumeration());
+
+        /**
+         * Test Enumeration USB Devices in java
+         */
+//        EnumeratingUsbDevices usbDevices = new EnumeratingUsbDevices(this);
+//        textView.setText("Wenjiun Enumeration:\n" +
+//                usbDevices.wenjiunEnumeration());
+
+        /**
+         * Test native method
+         */
+//        textView.setText( stringFromJNI() );
 
 
     }

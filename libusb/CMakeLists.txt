@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.4.1)
 # Provides the relative paths to its source code.
 
 add_library( # Sets the name of the library.
-             usb-1-0
+             libusb-1-0-21
 
              # Sets the library as a shared library.
              SHARED
@@ -25,11 +25,16 @@ add_library( # Sets the name of the library.
              src/main/cpp/libusb/os/poll_posix.c
              src/main/cpp/libusb/os/threads_posix.c
              src/main/cpp/libusb/os/linux_netlink.c
+
+             src/main/cpp/libusbjni.cpp
+             src/main/cpp/org_libusb_LibUSBJNI.cpp
+
            )
 
 # Provides a relative path to header file(s)
 
 include_directories( # Specifies a path to header file(s).
+                     src/main/cpp/
                      src/main/cpp/libusb/
                      src/main/cpp/libusb/os
                    )
@@ -49,7 +54,7 @@ find_library( # Sets the name of the path variable.
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       usb-1-0
+                       libusb-1-0-21
 
                        # Links the target library to the log library
                        # included in the NDK.
