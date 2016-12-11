@@ -2,7 +2,11 @@ package org.libusb_android;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.view.View;
+import android.view.View.OnClickListener;
+
 
 import org.libusb.LibUSBJNI;
 
@@ -18,27 +22,33 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView textView = (TextView) findViewById(R.id.sample_text);
+        final TextView textView = (TextView) findViewById(R.id.sample_text);
+        Button buttonGet = (Button)findViewById(R.id.buttonGet);
 
-        /**
-         * Test Enumeration USB Devices in cpp
-         */
-        LibUSBJNI usbJNI = new LibUSBJNI();
-        textView.setText("cpp Enumeration:\n" +
-                usbJNI.Demo() );
 
+        buttonGet.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+
+                /**
+                 * Test Enumeration USB Devices in cpp
+                 */
+                LibUSBJNI usbJNI = new LibUSBJNI();
+                textView.setText("cpp Enumeration:\n" + usbJNI.Demo() );
+
+
+            }
+        });
 
         /**
          * Test Enumeration USB Devices in java
          */
 //        EnumeratingUsbDevices usbDevices = new EnumeratingUsbDevices(this);
-//        textView.setText("Wenjiun Enumeration:\n" +
-//                usbDevices.wenjiunEnumeration());
+//        textView.setText("Wenjiun Enumeration:\n" + usbDevices.wenjiunEnumeration());
 
         /**
          * Test native method
          */
-//        textView.setText( stringFromJNI() );
+//      textView.setText( stringFromJNI() );
 
 
     }

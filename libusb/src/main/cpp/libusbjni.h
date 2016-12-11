@@ -15,6 +15,8 @@
 #include <sstream>
 #include <string>
 
+#include <stdexcept>
+
 #include "libusb/libusb.h"
 #include "libusb/libusbi.h"
 
@@ -33,6 +35,24 @@ public:
 private:
     void EnumerateInterfaces(std::ostringstream  & out, const libusb_config_descriptor * usbConfig);
     void EnumerateEndpoints(std::ostringstream  & out, const libusb_interface_descriptor * usbInterfaceDescriptor);
+
+    const std::string libusb_class_text(const enum libusb_class_code code);
+    const std::string libusb_class_text(const int code) {
+        try {
+            return libusb_class_text((const enum libusb_class_code) code);
+        } catch (...) {
+            throw std::invalid_argument("Error in libusb_class_code conversion ");
+        }
+    }
+
+    const std::string libusb_subclass_text(const enum libusb_class_code code, int subcode);
+    const std::string libusb_subclass_text(const int code, int subcode) {
+        try {
+            return libusb_subclass_text((const enum libusb_class_code) code, subcode);
+        } catch (...) {
+            throw std::invalid_argument("Error in libusb_class_code conversion ");
+        }
+    }
 
 
 };

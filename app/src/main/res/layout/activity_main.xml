@@ -16,6 +16,15 @@
         android:layout_height="fill_parent"
         >
 
+        <Button
+            android:id="@+id/buttonGet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:text="Press to get USB data"
+            />
+
         <ScrollView
             android:id="@+id/SCROLLER_ID"
             android:layout_width="fill_parent"
