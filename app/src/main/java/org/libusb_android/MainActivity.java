@@ -35,7 +35,6 @@ public class MainActivity extends Activity {
                 LibUSBJNI usbJNI = new LibUSBJNI();
                 textView.setText("cpp Enumeration:\n" + usbJNI.Demo() );
 
-
             }
         });
 

@@ -33,8 +33,10 @@ public:
 
 
 private:
-    void EnumerateInterfaces(std::ostringstream  & out, const libusb_config_descriptor * usbConfig);
+    void EnumerateInterfaces(std::ostringstream &out, const libusb_config_descriptor * usbConfig);
     void EnumerateEndpoints(std::ostringstream  & out, const libusb_interface_descriptor * usbInterfaceDescriptor);
+
+    void HexaDump(std::ostringstream & out, const std::string & indent, const unsigned char *extra, int extra_length);
 
     const std::string libusb_class_text(const enum libusb_class_code code);
     const std::string libusb_class_text(const int code) {

@@ -69,7 +69,7 @@ public class EnumeratingUsbDevices {
 
         HashMap<String, UsbDevice> deviceMap = usbManager.getDeviceList();
 
-        sb.append("\nUSB device enumeration\n");
+        sb.append("java USB device enumeration\n");
 
         sb.append(String.format(locale, "Detected %1$d USB devices\n", deviceMap.size() ));
 
@@ -102,7 +102,7 @@ public class EnumeratingUsbDevices {
                 usbClassCode = LibUSBClassCode.getCode(usbInterface.getInterfaceClass());
                 sb.append(String.format(locale, "\tClass.............: %1$d - (0x%1$02x - %2$s)\n", usbClassCode.getValue(), usbClassCode.name() ));
                 sb.append(String.format(locale, "\tSub Class.........: %1$d\n", usbInterface.getInterfaceSubclass() ));
-                sb.append(String.format(locale, "\tProtoco...........: %1$d\n", usbInterface.getInterfaceProtocol() ));
+                sb.append(String.format(locale, "\tProtocol..........: %1$d\n", usbInterface.getInterfaceProtocol() ));
 
                 // process endpoints for each interface
                 int endpointCount = usbInterface.getEndpointCount();
@@ -144,14 +144,10 @@ public class EnumeratingUsbDevices {
                             break;
                     }
                     sb.append(String.format(locale, "\t\tType........: %1$d (%2$s)\n", type, text ));
-
                 }
                 sb.append("\n");
-
             }
-
         }
-
         sb.append("\n");
         return sb.toString();
     }
