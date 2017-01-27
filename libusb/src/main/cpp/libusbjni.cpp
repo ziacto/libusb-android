@@ -13,6 +13,15 @@
 #include <bitset>
 #include <iomanip>
 
+#include <android/log.h>
+#define LOG_TAG "usb_io"
+#define printf(fmt,args...)  __android_log_print(ANDROID_LOG_DEBUG,LOG_TAG, fmt, ##args)
+
+#define CLASS_AUDIO 0x01
+#define SUBCLASS_AUDIOCONTROL 0x01
+#define PR_PROTOCOL_UNDEFINED 0x00
+#define PROTOCOL_IP_VERSION_02_00 0x20
+
 /**
  * Enumerate USB Devices
  *
@@ -107,11 +116,13 @@ std::string libusbjni::EnumerateDevices() {
         out << std::endl;
     }
 
+
     libusb_free_device_list(usbDevices, 1);
     libusb_exit(usbContext);
 
     return out.str();
 }
+
 
 /**
  * Enumerate Interfaces in a configuration
@@ -124,6 +135,7 @@ void libusbjni::EnumerateInterfaces(std::ostringstream &out,
 
     const libusb_interface *usbInterface;
     const libusb_interface_descriptor *usbInterfaceDescriptor;
+
 
     out << "bNumInterfaces..........: " << (uint) usbConfig->bNumInterfaces << std::endl;
 
@@ -186,6 +198,20 @@ void libusbjni::EnumerateInterfaces(std::ostringstream &out,
             << " (0x" << std::hex << std::setw(2) << std::setfill('0') <<
             (int) usbInterfaceDescriptor->bInterfaceProtocol << std::dec << ") "
             << std::endl;
+
+            if(usbInterfaceDescriptor->bInterfaceClass == CLASS_AUDIO &&
+                    usbInterfaceDescriptor->bInterfaceSubClass == SUBCLASS_AUDIOCONTROL) {
+                switch (usbInterfaceDescriptor->bInterfaceProtocol) {
+                    case PR_PROTOCOL_UNDEFINED:
+                        printf("UACSPEC %s", "UAC1 device");
+                        break;
+                    case PROTOCOL_IP_VERSION_02_00:
+                        printf("UACSPEC %s", "UAC2 device");
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             EnumerateEndpoints(out, usbInterfaceDescriptor);
         }
